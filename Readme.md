@@ -113,7 +113,6 @@ Com os containers operacionais, execute os comandos internos no container da apl
 ```bash
 docker exec -it erp-app composer install
 docker exec -it erp-app php artisan key:generate
-docker exec -it erp-app php artisan migrate --seed
 ```
 ---
 
