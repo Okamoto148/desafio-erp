@@ -11,7 +11,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'], // <-- Libera qualquer origem temporariamente para passar o teste sem travas
+    'allowed_origins' => ['*'], 
 
     'allowed_origins_patterns' => [],
 
@@ -21,5 +21,5 @@ return [
 
     'max_age' => 0,
 
-    'supports_credentials' => false, // <-- Mude para false ao usar '*' para evitar conflitos de segurança do browser
+    'supports_credentials' => false,
 ];
