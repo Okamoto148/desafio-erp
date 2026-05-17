@@ -19,8 +19,8 @@ class DatabaseSeeder extends Seeder
             'is_active' => true
         ]);
 
-        $serviceA = Service::create(['name' => 'Suporte Técnico', 'base_price' => 100.00]);
-        $serviceB = Service::create(['name' => 'Manutenção Preventiva', 'base_price' => 50.00]);
+        $serviceA = Service::create(['name' => 'Suporte Técnico', 'default_price' => 100.00]);
+        $serviceB = Service::create(['name' => 'Manutenção Preventiva', 'default_price' => 50.00]);
 
         $contract = Contract::create([
             'customer_id' => $customer->id,

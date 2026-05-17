@@ -7,9 +7,7 @@ use InvalidArgumentException;
 
 class ServiceService
 {
-    /**
-     * Cria um novo serviço no sistema aplicando validações de negócio.
-     */
+
     public function createService(array $data): Service
     {
         if (isset($data['default_price']) && $data['default_price'] < 0) {
@@ -22,9 +20,6 @@ class ServiceService
         ]);
     }
 
-    /**
-     * Atualiza um serviço existente.
-     */
     public function updateService(Service $service, array $data): Service
     {
         if (isset($data['default_price']) && $data['default_price'] < 0) {

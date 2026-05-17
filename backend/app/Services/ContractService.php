@@ -8,15 +8,11 @@ use InvalidArgumentException;
 
 class ContractService
 {
-    /**
-     * Retorna todos os contratos calculando dinamicamente os subtotais e totais
-     */
+
     public function getAllContracts()
     {
-        // Carrega os contratos trazendo os relacionamentos do banco
         $contracts = Contract::with(['customer', 'items.service'])->get();
 
-        // Mapeia a coleção para injetar as propriedades que o Vue espera ler
         $contracts->transform(function ($contract) {
             $totalContrato = 0;
 
@@ -24,18 +20,15 @@ class ContractService
                 foreach ($contract->items as $item) {
                     $subtotal = $item->quantity * $item->unit_price;
 
-                    // Aplica a regra de negócio dos 10%
                     if ($item->quantity >= 10) {
                         $subtotal = $subtotal * 0.90;
                     }
 
-                    // Injeta dinamicamente no objeto do item para o front-end mapear
                     $item->subtotal = $subtotal;
                     $totalContrato += $subtotal;
                 }
             }
 
-            // Injeta o total geral calculado na raiz do contrato
             $contract->total_calculated = $totalContrato;
             return $contract;
         });
@@ -43,9 +36,6 @@ class ContractService
         return $contracts;
     }
 
-    /**
-     * Calcula o total mensal do contrato (Mantido para compatibilidade interna se necessário).
-     */
     public function calculateMonthlyTotal(Contract $contract): float
     {
         return $contract->items->reduce(function ($total, $item) {
