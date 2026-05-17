@@ -39,6 +39,7 @@ class CustomerService
         if ($len !== 11 && $len !== 14) {
             throw new InvalidArgumentException("O documento deve ser um CPF (11 dígitos) ou CNPJ (14 dígitos) válido.");
         }
+    }
         
 
     private function sanitize(string $value): string
